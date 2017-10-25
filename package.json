@@ -5,8 +5,10 @@
   "dependencies": {
     "json-server": "^0.12.0",
     "react": "^16.0.0",
+    "react-bootstrap": "^0.31.5",
     "react-dom": "^16.0.0",
-    "react-scripts": "1.0.14"
+    "react-scripts": "1.0.14",
+    "bootstrap": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
