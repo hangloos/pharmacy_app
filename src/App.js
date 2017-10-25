@@ -3,6 +3,7 @@ import logo from './medical.svg';
 import './App.css';
 import Form from './Components/form.js';
 import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
 
 class App extends Component {
   render() {
