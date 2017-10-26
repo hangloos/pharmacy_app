@@ -20,6 +20,8 @@ class Form extends Component {
         zipcodeValid: false,
         first_nameValid: false,
         last_nameValid: false,
+        addressValid: false,
+        requiredValid: false,
         cityValid: false,
         formValid: false,
         formErrors: {
@@ -48,6 +50,7 @@ class Form extends Component {
       let cityValid = this.state.cityValid;
       let first_nameValid = this.state.first_nameValid;
       let last_nameValid = this.state.last_nameValid;
+      let addressValid = this.state.addressValid;
   
 
       switch(fieldName) {
@@ -61,11 +64,15 @@ class Form extends Component {
           break;
         case 'first_name':
           first_nameValid = value.match(/^[A-Za-z]+$/);
-          fieldValidationErrors.name = first_nameValid ? '' : ' is invalid';
+          fieldValidationErrors.first_name = first_nameValid ? '' : ' is invalid';
           break;
         case 'last_name':
           last_nameValid = value.match(/^[A-Za-z]+$/);
-          fieldValidationErrors.name = last_nameValid ? '' : ' is invalid';
+          fieldValidationErrors.last_name = last_nameValid ? '' : ' is invalid';
+          break;
+        case 'address':
+          addressValid = value.length > 0;
+          fieldValidationErrors.address = addressValid ? '' : ' is required';
           break;
         default:
           break;
@@ -74,13 +81,14 @@ class Form extends Component {
                       zipcodeValid: zipcodeValid,
                       cityValid: cityValid,
                       first_nameValid: first_nameValid,
-                      last_nameValid: last_nameValid
+                      last_nameValid: last_nameValid,
+                      addressValid: addressValid
                     }, this.validateForm);
     }
 
     validateForm() {
       this.setState({formValid: this.state.zipcodeValid && this.state.cityValid
-        && this.state.first_nameValid && this.state.last_nameValid});
+        && this.state.first_nameValid && this.state.last_nameValid && this.state.addressValid});
     }
 
 
@@ -97,25 +105,25 @@ class Form extends Component {
                 <br className="br-style" />
                             <h3 >Personal Information</h3>
                   <div className="form-group">
-                    <input type="text" className="form-control" id="username" value={this.state.username} onChange={(e) => this.handleUserInput(e)} name="username" placeholder="Username" required />
+                    <input type="text" className="form-control" id="username" value={this.state.username} onChange={(e) => this.handleUserInput(e)} name="username" placeholder="Username"  />
                   </div>
                   <div className="form-group">
-                    <input type="text" className="form-control" id="first_name" value={this.state.first_name} onChange={(e) => this.handleUserInput(e)} name="first_name" placeholder="First Name" required />
+                    <input type="text" className="form-control" id="first_name" value={this.state.first_name} onChange={(e) => this.handleUserInput(e)} name="first_name" placeholder="First Name"  />
                   </div>
                   <div className="form-group">
-                    <input type="text" className="form-control" id="last_name" value={this.state.last_name} onChange={(e) => this.handleUserInput(e)} name="last_name" placeholder="Last Name" required />
+                    <input type="text" className="form-control" id="last_name" value={this.state.last_name} onChange={(e) => this.handleUserInput(e)} name="last_name" placeholder="Last Name"  />
                   </div>
                   <div className="form-group">
-                    <input type="text" className="form-control" id="address" value={this.state.address} onChange={(e) => this.handleUserInput(e)} name="address" placeholder="Address" required />
+                    <input type="text" className="form-control" id="address" value={this.state.address} onChange={(e) => this.handleUserInput(e)} name="address" placeholder="Address"  />
                   </div>
                   <div className="form-group">
-                    <input type="text" className="form-control" id="city" value={this.state.city} onChange={(e) => this.handleUserInput(e)} name="city" placeholder="City" required />
+                    <input type="text" className="form-control" id="city" value={this.state.city} onChange={(e) => this.handleUserInput(e)} name="city" placeholder="City"  />
                   </div>
                   <div className="form-group">
-                  < States />
+                  < States handleUserInput={this.handleUserInput.bind(this)} />
                   </div>
                   <div className="form-group">
-                    <input type="text" className="form-control" id="zipcode" value={this.state.zipcode} onChange={(e) => this.handleUserInput(e)} name="zipcode" placeholder="Zipcode" required />
+                    <input type="text" className="form-control" id="zipcode" value={this.state.zipcode} onChange={(e) => this.handleUserInput(e)} name="zipcode" placeholder="Zipcode"  />
                   </div>
                 <button disabled={!this.state.formValid} type="button" id="submit" name="submit" className="btn btn-primary">Submit Form</button>
                 </form>

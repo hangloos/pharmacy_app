@@ -2,10 +2,16 @@ import React, { Component } from 'react';
 
 
 class States extends Component {
+
+    handleUserInput(e)  {
+        this.props.handleUserInput(e)
+    }
+
+
   render() {
     return (
       <div>
-          <select>
+          <select name="state" id="state" onChange={(e) => this.handleUserInput(e)} >
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
