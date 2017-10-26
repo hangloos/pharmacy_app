@@ -18,6 +18,8 @@ class Form extends Component {
         state: '',
         zicode: '',
         zipcodeValid: false,
+        first_nameValid: false,
+        last_nameValid: false,
         cityValid: false,
         formValid: false,
         formErrors: {
@@ -44,6 +46,8 @@ class Form extends Component {
       let fieldValidationErrors = this.state.formErrors;
       let zipcodeValid = this.state.zipcodeValid;
       let cityValid = this.state.cityValid;
+      let first_nameValid = this.state.first_nameValid;
+      let last_nameValid = this.state.last_nameValid;
   
 
       switch(fieldName) {
@@ -55,17 +59,28 @@ class Form extends Component {
           cityValid = value.match(/^[A-Za-z]+$/);
           fieldValidationErrors.city = cityValid ? '' : ' is invalid';
           break;
+        case 'first_name':
+          first_nameValid = value.match(/^[A-Za-z]+$/);
+          fieldValidationErrors.name = first_nameValid ? '' : ' is invalid';
+          break;
+        case 'last_name':
+          last_nameValid = value.match(/^[A-Za-z]+$/);
+          fieldValidationErrors.name = last_nameValid ? '' : ' is invalid';
+          break;
         default:
           break;
       }
       this.setState({formErrors: fieldValidationErrors,
                       zipcodeValid: zipcodeValid,
-                      cityValid: cityValid
+                      cityValid: cityValid,
+                      first_nameValid: first_nameValid,
+                      last_nameValid: last_nameValid
                     }, this.validateForm);
     }
 
     validateForm() {
-      this.setState({formValid: this.state.zipcodeValid && this.state.city});
+      this.setState({formValid: this.state.zipcodeValid && this.state.cityValid
+        && this.state.first_nameValid && this.state.last_nameValid});
     }
 
 
