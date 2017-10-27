@@ -46,6 +46,7 @@ class Form extends Component {
                       this.setState({location: json.response.headerFullLocation,
                         pharmacies: json.response.groups[0].items})
                     })
+                    .catch(error => console.log(error))
       }
 
     }
