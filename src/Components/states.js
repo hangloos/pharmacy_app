@@ -11,7 +11,8 @@ class States extends Component {
   render() {
     return (
       <div>
-          <select name="state" id="state" onChange={(e) => this.handleUserInput(e)} >
+          <select name="stateUS" id="stateUS" onChange={(e) => this.handleUserInput(e)} >
+            <option value="State">State</option>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>

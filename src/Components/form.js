@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import logo from '../medical.svg';
 import './form.css';
-import Button from 'react-bootstrap/lib/Button';
 import States from './states.js'
 import { FormErrors} from './FormErrors.js'
 
@@ -15,7 +13,7 @@ class Form extends Component {
         last_name: '',
         address: '',
         city: '',
-        state: '',
+        stateUS: '',
         zicode: '',
         zipcodeValid: false,
         first_nameValid: false,
@@ -35,6 +33,14 @@ class Form extends Component {
         }
       }
     }
+
+
+    // fetch('https://api.foursquare.com/v2/venues/explore?ll='+latitude+','+longitude+'&query=Pharmacy&radiuis=16093.4&client_id=EMPR4BQDMW4G3Y1COXNYKU4RILKJ5T0P2L5CSDEPSUCD3Q0V&client_secret=PWOU4QRIOBOON2ILKGUM2G1AUS13FECKIIMTOGH0WBSXFOHE&v=20170213')
+    //                 .then(response => response.json())
+    //                 .then(json => {
+    //                   console.log(json)
+    //                   // this.setState({pharmacies: json.response.groups[0].items})
+    //                 })
 
 
     handleUserInput(e) {
@@ -91,6 +97,24 @@ class Form extends Component {
         && this.state.first_nameValid && this.state.last_nameValid && this.state.addressValid});
     }
 
+    submitForm() {
+      const data = {
+        "username": this.state.username,
+        "first_name": this.state.first_name,
+        "last_name": this.state.last_name,
+        "address": this.state.address,
+        "city": this.state.city,
+        "stateUS": this.state.stateUS,
+        "zipcode": this.state.zipcode
+      }
+
+      fetch('http://localhost:3004/patients', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        body: JSON.stringify(data),
+      })
+    }
+
 
 
   render() {
@@ -125,7 +149,10 @@ class Form extends Component {
                   <div className="form-group">
                     <input type="text" className="form-control" id="zipcode" value={this.state.zipcode} onChange={(e) => this.handleUserInput(e)} name="zipcode" placeholder="Zipcode"  />
                   </div>
-                <button disabled={!this.state.formValid} type="button" id="submit" name="submit" className="btn btn-primary">Submit Form</button>
+                  <div className="form-group">
+                    
+                  </div>
+                <button disabled={!this.state.formValid} onClick={(e) => {this.submitForm()}} type="button" id="submit" name="submit" className="btn btn-primary">Submit Form</button>
                 </form>
             </div>
         </div>
