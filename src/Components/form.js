@@ -22,6 +22,8 @@ class Form extends Component {
         requiredValid: false,
         cityValid: false,
         formValid: false,
+        pharmacies: [],
+        location: '',
         formErrors: {
           zipcode: '',
           state: '',
@@ -35,13 +37,15 @@ class Form extends Component {
     }
 
 
-    // fetch('https://api.foursquare.com/v2/venues/explore?ll='+latitude+','+longitude+'&query=Pharmacy&radiuis=16093.4&client_id=EMPR4BQDMW4G3Y1COXNYKU4RILKJ5T0P2L5CSDEPSUCD3Q0V&client_secret=PWOU4QRIOBOON2ILKGUM2G1AUS13FECKIIMTOGH0WBSXFOHE&v=20170213')
-    //                 .then(response => response.json())
-    //                 .then(json => {
-    //                   console.log(json)
-    //                   // this.setState({pharmacies: json.response.groups[0].items})
-    //                 })
+    componentWillUpdate(nextProps, nextState)  {
+      fetch('https://api.foursquare.com/v2/venues/explore?ll='+nextProps.latitude+','+nextProps.longitude+'&query=Pharmacy&radiuis=16093.4&client_id=EMPR4BQDMW4G3Y1COXNYKU4RILKJ5T0P2L5CSDEPSUCD3Q0V&client_secret=PWOU4QRIOBOON2ILKGUM2G1AUS13FECKIIMTOGH0WBSXFOHE&v=20170213')
+                    .then(response => response.json())
+                    .then(json => {
+                      this.setState({location: json.response.headerFullLocation})
+                      // this.setState({pharmacies: json.response.groups[0].items})
+                    })
 
+    }
 
     handleUserInput(e) {
       const name = e.target.name
@@ -110,8 +114,8 @@ class Form extends Component {
 
       fetch('http://localhost:3004/patients', {
         method: 'POST',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        body: JSON.stringify(data),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: JSON.stringify(data)
       })
     }
 
@@ -128,6 +132,7 @@ class Form extends Component {
                 <form role="form">
                 <br className="br-style" />
                             <h3 >Personal Information</h3>
+                            {this.state.location}
                   <div className="form-group">
                     <input type="text" className="form-control" id="username" value={this.state.username} onChange={(e) => this.handleUserInput(e)} name="username" placeholder="Username"  />
                   </div>

@@ -11,8 +11,27 @@ class App extends Component {
     super(props);
     this.state = {
       pharmacies: [],
-      coordinates: ''
+      latitude: '',
+      longitude: ''
     }
+  }
+
+  componentWillMount() {
+    var latitude = ''
+    var longitude = ''
+    navigator.geolocation.getCurrentPosition(function(position) {
+               latitude = position.coords.latitude
+               longitude = position.coords.longitude
+
+    })
+
+    setTimeout(() => {
+      this.setState({
+        latitude: latitude,
+        longitude: longitude
+      })
+    },5000)
+   
   }
 
   render() {
@@ -22,7 +41,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Eric's Pharmacy</h1>
         </header>
-        < Form />
+        < Form latitude={this.state.latitude} longitude={this.state.longitude} />
       </div>
     );
   }
