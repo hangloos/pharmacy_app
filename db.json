@@ -7,6 +7,10 @@
     {
       "{\"username\":\"eloos\",\"first_name\":\"Eric\",\"last_name\":\"Loos\",\"address\":\"301 Hillwick Lane\",\"city\":\"Schaumburg\",\"stateUS\":\"IL\",\"zipcode\":\"60193\",\"pharmacy\":\"CVS/pharmacy\"}": "",
       "id": 2
+    },
+    {
+      "{\"username\":\"e\",\"first_name\":\"Eric\",\"last_name\":\"Loos\",\"address\":\"301 Hillwick Lane\",\"city\":\"Schaumburg\",\"stateUS\":\"IL\",\"zipcode\":\"60193\",\"pharmacy\":\"Walgreens\"}": "",
+      "id": 3
     }
   ]
 }

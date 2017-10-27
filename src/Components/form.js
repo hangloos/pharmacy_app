@@ -39,8 +39,9 @@ class Form extends Component {
 
 
     componentWillUpdate(nextProps, nextState)  {
-      if (this.state.location === nextState.location) {
-        fetch('https://api.foursquare.com/v2/venues/explore?ll='+nextProps.latitude+','+nextProps.longitude+'&query=Pharmacy&radiuis=16093.4&client_id=EMPR4BQDMW4G3Y1COXNYKU4RILKJ5T0P2L5CSDEPSUCD3Q0V&client_secret=PWOU4QRIOBOON2ILKGUM2G1AUS13FECKIIMTOGH0WBSXFOHE&v=20170213')
+      debugger
+      if (this.state.location === '' && this.state.pharmacies.length === 0) {
+        fetch('https://api.foursquare.com/v2/venues/explore?ll='+nextProps.latitude+','+nextProps.longitude+'&query=Pharmacy&radiuis=16093.4&client_id=AMGMZBNJ5WXLS5AU1NAR5RYREWS2UCZVBMWK2MFT2Q5NQJAK&client_secret=Y03WFJZ4OCZISXDIWZ5AUTHHTR3QQMOEZRKHCDR10ZF53A3S&v=20170213')
                     .then(response => response.json())
                     .then(json => {
                       this.setState({location: json.response.headerFullLocation,
@@ -120,6 +121,17 @@ class Form extends Component {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: JSON.stringify(data)
+      })
+
+      this.setState({
+        username: '',
+        first_name: '',
+        last_name: '',
+        address: '',
+        city: '',
+        stateUS: '',
+        zicode: '',
+        pharmacy: ''
       })
     }
 
