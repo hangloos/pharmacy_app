@@ -39,7 +39,6 @@ class Form extends Component {
 
 
     componentWillUpdate(nextProps, nextState)  {
-      debugger
       if (this.state.location === '' && this.state.pharmacies.length === 0) {
         fetch('https://api.foursquare.com/v2/venues/explore?ll='+nextProps.latitude+','+nextProps.longitude+'&query=Pharmacy&radiuis=16093.4&client_id=AMGMZBNJ5WXLS5AU1NAR5RYREWS2UCZVBMWK2MFT2Q5NQJAK&client_secret=Y03WFJZ4OCZISXDIWZ5AUTHHTR3QQMOEZRKHCDR10ZF53A3S&v=20170213')
                     .then(response => response.json())
@@ -50,6 +49,7 @@ class Form extends Component {
       }
 
     }
+
 
     handleUserInput(e) {
       const name = e.target.name
