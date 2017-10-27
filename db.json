@@ -1,4 +1,12 @@
 {
   "patients": [
+    {
+      "{\"username\":\"eloos\",\"first_name\":\"Eric\",\"last_name\":\"Loos\",\"address\":\"301 Hillwick Lane\",\"city\":\"Schaumburg\",\"stateUS\":\"IL\",\"zipcode\":\"60193\"}": "",
+      "id": 1
+    },
+    {
+      "{\"username\":\"eloos\",\"first_name\":\"Eric\",\"last_name\":\"Loos\",\"address\":\"301 Hillwick Lane\",\"city\":\"Schaumburg\",\"stateUS\":\"IL\",\"zipcode\":\"60193\",\"pharmacy\":\"CVS/pharmacy\"}": "",
+      "id": 2
+    }
   ]
 }
