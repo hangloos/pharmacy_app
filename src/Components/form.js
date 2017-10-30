@@ -118,7 +118,7 @@ class Form extends Component {
         "pharmacy": this.state.pharmacy
       }
 
-      fetch('http://localhost:3004/patients', {
+      fetch('https://localhost:3004/patients', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: JSON.stringify(data)
